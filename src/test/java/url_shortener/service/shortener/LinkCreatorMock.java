@@ -3,7 +3,7 @@ package url_shortener.service.shortener;
 import url_shortener.service.linkCreator.ILinkCreator;
 
 public class LinkCreatorMock implements ILinkCreator {
-    int counter = 0;
+    long counter = 0;
     @Override
     public String createLink() {
         return "123" + String.valueOf(counter++);
@@ -12,5 +12,10 @@ public class LinkCreatorMock implements ILinkCreator {
         counter--;
         return createLink();
 
+    }
+
+    @Override
+    public void setCounter(long counter) {
+        this.counter = counter;
     }
 }

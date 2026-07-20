@@ -13,6 +13,11 @@ public class RepoMock implements IUrlRepository {
     }
 
     @Override
+    public long getMaxId() {
+        return 1;
+    }
+
+    @Override
     public Optional<String> getLongLink(String shortLink) {
         if (!data.containsKey(shortLink)){
             return Optional.empty();

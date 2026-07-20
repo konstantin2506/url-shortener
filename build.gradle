@@ -21,10 +21,14 @@ repositories {
 dependencies {
     // Основной стартер для веб-приложения (включает Tomcat и spring-context)
     implementation 'org.springframework.boot:spring-boot-starter-web'
-
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.hibernate.orm:hibernate-core:7.4.0.Final'
+    implementation 'org.postgresql:postgresql:42.7.3'
     // Стартер для тестирования (автоматически включает JUnit 5 и Mockito)
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+
 }
 
 tasks.named('test') {
