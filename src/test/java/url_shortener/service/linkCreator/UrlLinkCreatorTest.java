@@ -13,7 +13,8 @@ public class UrlLinkCreatorTest {
         assertEquals("1", link1);
 
         String currentLink = "";
-        for (int i = 0; i < 9; i++){
+        creator.setCounter(0);
+        for (int i = 0; i < 10; i++){
             currentLink = creator.createLink();
         }
         assertEquals("a", currentLink);

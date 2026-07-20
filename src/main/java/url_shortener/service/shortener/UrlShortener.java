@@ -3,6 +3,7 @@ package url_shortener.service.shortener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import url_shortener.entity.ShortLink;
 import url_shortener.repository.IUrlRepository;
 import url_shortener.service.linkCreator.ILinkCreator;
 
@@ -20,15 +21,17 @@ public class UrlShortener implements IShortener{
         this.domain = domain;
         this.repo = repo;
         this.linkCreator = creator;
+
+        creator.setCounter(repo.getMaxId());
     }
     @Override
-    public String getShortLink(String longLink) {
+    public ShortLink getShortLink(String longLink) {
         var lastPart = linkCreator.createLink();
         repo.saveLongLink(lastPart, longLink);
-        return String.format("%s/%s", domain, lastPart);
+        return new ShortLink(domain, lastPart);
     }
     @Override
-    public Optional<String> getLongLink(String shortedLink){
-        return repo.getLongLink(shortedLink);
+    public Optional<String> getLongLink(ShortLink shortedLink){
+        return repo.getLongLink(shortedLink.key());
     }
 }

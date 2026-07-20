@@ -4,11 +4,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UrlLinkCreator implements ILinkCreator {
-    int counter = 0;
+    long counter = 0;
     public UrlLinkCreator(){};
     @Override
     public String createLink() {
         counter++;
-        return Integer.toHexString(counter);
+        return Long.toHexString(counter);
+    }
+    public void setCounter(long counter){
+        this.counter = counter;
     }
 }
