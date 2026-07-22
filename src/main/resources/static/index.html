@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UrlShortener</title>
+    <style>textarea { resize: none; }</style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+</head>
+<body>
+<h1>Welcome to URL-Shortener by kostya2506!</h1>
+
+<form id="textForm">
+    <div class="form-group">
+        <label for="userText">Enter your link:</label>
+        <textarea id="userText" placeholder="https://google.com" required></textarea>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+
+<p id="result">
+    <span id="resultLabel"></span>
+    <span id="shortUrlContainer"></span>
+</p>
+
+<button id="copyBtn">Copy</button>
+<button id="clearBtn">Clear</button>
+
+<script>
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+        const shortUrl = document.getElementById('shortUrlContainer').textContent;
+
+        if (!shortUrl) {
+            alert("Нечего копировать!");
+            return;
+        }
+
+        navigator.clipboard.writeText(shortUrl)
+            .then(() => {
+                alert("Ссылка скопирована в буфер!");
+            })
+            .catch(err => {
+                console.error("Ошибка при копировании: ", err);
+            });
+    });
+
+    document.getElementById('textForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const url = document.getElementById('userText').value;
+
+        try {
+            const response = await fetch('/api/shortener', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ longUrl: url })
+            });
+
+            const data = await response.json();
+
+
+            document.getElementById('resultLabel').textContent = "Короткая ссылка: ";
+            document.getElementById('shortUrlContainer').innerHTML =
+                `<a href="${data.shortUrl}" target="_blank">${data.shortUrl}</a>`;
+
+        } catch (error) {
+            document.getElementById('resultLabel').textContent = 'Error: ';
+            document.getElementById('shortUrlContainer').textContent = error.message;
+        }
+    });
+
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+        document.getElementById('userText').value = '';
+        document.getElementById('resultLabel').textContent = '';
+        document.getElementById('shortUrlContainer').textContent = '';
+    });
+</script>
+</body>
+</html>

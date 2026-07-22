@@ -1,0 +1,132 @@
+/* 1. Сброс базовых отступов и центрирование по центру экрана */
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* растягивает контент на всю высоту экрана */
+    box-sizing: border-box;
+}
+
+/* 2. Контейнер формы (основное белое окно по центру) */
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#textForm {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); /* мягкая тень */
+    width: 100%;
+    max-width: 450px; /* ограничивает ширину формы */
+    box-sizing: border-box;
+}
+
+/* 3. Поле ввода текста */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+textarea {
+    width: 100%;
+    height: 50px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #007bff; /* синяя рамка при фокусе */
+}
+
+/* 4. Кнопки (Отправить и Очистить) */
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    box-sizing: border-box;
+}
+
+/* Главная кнопка Submit */
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    margin-bottom: 12px;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Кнопка Clear */
+#clearBtn {
+    background-color: #e0e0e0;
+    color: #333;
+    max-width: 450px; /* чтобы была такой же ширины, как и форма */
+}
+
+#clearBtn:hover {
+    background-color: #d5d5d5;
+}
+
+button:active {
+    transform: scale(0.98); /* эффект нажатия */
+}
+#copyBtn {
+    background-color: #28a745;
+    color: white;
+    max-width: 450px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+#copyBtn:hover {
+    background-color: #218838;
+}
+
+#copyBtn:active {
+    transform: scale(0.98);
+}
+/* 5. Блок с результатом */
+#result {
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: center;
+    word-break: break-all; /* чтобы длинные ссылки не ломали верстку */
+}
+
+#result a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#result a:hover {
+    text-decoration: underline;
+}
