@@ -3,7 +3,6 @@ package url_shortener.repository;
 
 
 import org.springframework.stereotype.Repository;
-import url_shortener.entity.ShortLink;
 import url_shortener.entity.UrlEntity;
 
 

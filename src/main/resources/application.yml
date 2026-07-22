@@ -1,10 +1,8 @@
 spring:
-    main:
-        web-application-type: none
     datasource:
-        url: jdbc:postgresql://localhost:5432/my_database
-        username: postgres
-        password: 12345
+        url: ${DB_URL}
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
         driver-class-name: org.postgresql.Driver
     jpa:
         hibernate:
@@ -15,4 +13,4 @@ spring:
                 dialect: org.hibernate.dialect.PostgreSQLDialect
                 format_sql: true
 app:
-    domain: "https://my_domain"
+    domain: "http://localhost:8080"
